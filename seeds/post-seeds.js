@@ -2,30 +2,21 @@ const { Post } = require('../models');
 
 const postData = [
   {
-    tag_name: 'rock music',
+    name: "Music Near Me",
+    description: "A mobile app that will send you notifications whenever a concert is playing in your area.",
+    user_id: 1
   },
   {
-    tag_name: 'pop music',
+    name: "The Ultimate Tech Quiz",
+    description: "A web app that will give users 10 new technical questions each day and track their progress in things like programming, cybersecurity, database architecture, and more!",
+    user_id: 2
   },
   {
-    tag_name: 'blue',
-  },
-  {
-    tag_name: 'red',
-  },
-  {
-    tag_name: 'green',
-  },
-  {
-    tag_name: 'white',
-  },
-  {
-    tag_name: 'gold',
-  },
-  {
-    tag_name: 'pop culture',
-  },
-];
+    name: "Roll 'Em Up",
+    description: "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes.",
+    user_id: 2
+  }
+]
 
 const seedPosts = () => Post.bulkCreate(postData);
 
