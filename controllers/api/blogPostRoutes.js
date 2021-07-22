@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 });
 
 //COMMENT
-router.post('/', async (req, res) => {
+router.post('/:id', async (req, res) => {
   try {
     const newComment = await Comment.create({
       ...req.body,

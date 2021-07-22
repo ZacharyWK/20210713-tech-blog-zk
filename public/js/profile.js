@@ -37,10 +37,42 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('.new-blogPost-form')
-  .addEventListener('submit', newFormHandler);
+
+//COMMENTS
+const newCommentHandler = async (event) => {
+  event.preventDefault();
+
+  const comment_body = document.querySelector('#comment-body').value.trim();
+  const post_id = document.querySelector('#post_id').getAttribute("value");
+  console.log(post_id)
+
+  if (comment_body) {
+    const response = await fetch(`/api/posts/${post_id}`, {
+      method: 'POST',
+      body: JSON.stringify({comment_body}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    // if (response.ok) {
+    //   document.location.replace('/blogPost');
+    // } else {
+    //   alert('Failed to create comment');
+    // }
+  }
+};
+
+
+
+
 
 document
-  .querySelector('.blogPost-list')
-  .addEventListener('click', delButtonHandler);
+  .querySelector('.new-blogPost-form')?.addEventListener('submit', newFormHandler);
+
+document
+  .querySelector('.blogPost-list')?.addEventListener('click', delButtonHandler);
+
+
+document
+  .querySelector('#comment-btn').addEventListener('click', newCommentHandler );

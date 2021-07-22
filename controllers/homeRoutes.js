@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const { BlogPost, User } = require('../models');
+const { BlogPost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
+
+
 
 router.get('/', async (req, res) => {
   try {
@@ -27,6 +29,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+//RENDERS A POST blogpost.handlebars
 router.get('/posts/:id', async (req, res) => {
   try {
     const blogPostData = await BlogPost.findByPk(req.params.id, {
@@ -39,6 +43,7 @@ router.get('/posts/:id', async (req, res) => {
     });
 
     const blogPost = blogPostData.get({ plain: true });
+    // console.log(blogPost)
 
     res.render('blogPost', {
       ...blogPost,
@@ -49,10 +54,11 @@ router.get('/posts/:id', async (req, res) => {
   }
 });
 
+
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    // Find user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: BlogPost }],
@@ -69,8 +75,8 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+//if already logged in
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect('/profile');
     return;

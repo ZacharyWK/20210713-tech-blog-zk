@@ -1,29 +1,33 @@
-<div class="text-center">
+{{!-- post dashboard --}}
+
+{{!-- POST DISPLAY --}}
+<div class="text-center" value={{id}} id="post_id">
   <h2>{{title}}</h2>
   <p>{{post_body}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
   </div>
 
-<div class="comment">
+{{!-- ADD COMMENT --}}
+<div >
   <h2>Comments</h2>
-  <form>
-    <input class="form-input" type="text">
-    <button type="submit" class="btn btn-primary" id="comment-btn">Comment</button>
+  <form class="new-comment-form">
+    <textarea class="form-input" type="text" id="comment-body" name="comment-body"></textarea>
+    <button type="submit" class="btn btn-primary" id="comment-btn">Say</button>
   </form>
-  {{#if Comment}}{{#each Comment}}
-  <p>{{name}} Said: {{Comment.comment_body}} on: {{format_date date_created}}</p>
-
-  {{/each}}{{/if}}
 </div>
 
-  {{#if blogposts.length}}
-  <div class="col-md-6 blogPost-list">
+
+{{!-- COMMENT DISPLAY --}}
+  {{#if comment.length}}
+  <div class="col-md-6 comment-list">
     <h3>Previous Posts:</h3>
 
-    {{#each blogposts as |post|}}
+    {{#each comment}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/posts/{{post.id}}">{{post.title}}</a></h4>
+        <h4><p>
+          {{!-- {{user.name}} Said:  --}}
+          {{comment.comment_body}} on: {{format_date date_created}}</p></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
@@ -33,3 +37,4 @@
   </div>
   {{/if}}
 </div>
+<script src="/js/profile.js"></script>
