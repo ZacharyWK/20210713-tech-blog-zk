@@ -18,15 +18,15 @@
 
 
 {{!-- COMMENT DISPLAY --}}
-  {{#if comment.length}}
+  {{#if comments.length}}
   <div class="col-md-6 comment-list">
     <h3>Previous Posts:</h3>
 
-    {{#each comment}}
+    {{#each comments as |comment|}}
     <div class="row mb-2">
       <div class="col-md-8">
         <h4><p>
-          {{!-- {{user.name}} Said:  --}}
+          {{user.name}} Said: 
           {{comment.comment_body}} on: {{format_date date_created}}</p></h4>
       </div>
       <div class="col-md-4">
