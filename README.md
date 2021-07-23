@@ -90,8 +90,8 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 https://github.com/ZacharyWK/20210713-tech-blog-zk
 ```
 
-[DEPLOYED](#)
+[DEPLOYED](https://tech-blog-zk.herokuapp.com/)
 ```
-#
+https://tech-blog-zk.herokuapp.com/
 ```
 
